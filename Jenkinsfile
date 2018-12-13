@@ -55,7 +55,7 @@ pipeline {
                 echo "Logging in to Amazon ECR..."
                 //$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
                 echo "Pushing the docker container..."
-                sh "docker push -t ${config['app_name']}:${app_version_number} ."
+                sh "docker push -t ${config['app_name']}:${config['app_version_number']} ."
             }
         }
         // auto deploy to the development environment only when building the master branch
