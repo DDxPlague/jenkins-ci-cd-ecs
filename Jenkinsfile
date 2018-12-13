@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo config.toString()
                 echo "Building the docker container"
-                sh "docker build --pull -t ${config['repository_name']}/${config['app_name']}:${GIT_COMMIT} ."
+                sh "docker build --pull -t ${config['app_name']}:${GIT_COMMIT} ."
             }
         }
         // push the docker container only when building the master branch
