@@ -50,7 +50,7 @@ pipeline {
                 AWS_ACCESS_KEY_ID=`/home/jenkins/jq -r '.Credentials.AccessKeyId' build-credentials.json`
                 AWS_SECRET_ACCESS_KEY_ID=`/home/jenkins/jq -r '.Credentials.SecretAccessKey' build-credentials.json`
                 AWS_SESSION_TOKEN=`/home/jenkins/jq -r '.Credentials.SessionToken' build-credentials.json`
-                aws ecr get-login --no-include-email
+                aws ecr get-login --region ${config['aws_region']} --no-include-email
                 """
                 // sh "echo $AWS_ACCESS_KEY_ID"
                 echo "\$AWS_SECRET_ACCESS_KEY"
