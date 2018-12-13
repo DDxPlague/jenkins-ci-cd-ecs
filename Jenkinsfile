@@ -44,7 +44,7 @@ pipeline {
                 echo config.toString()
                 echo "Logging in to Amazon ECR..."
                 sh "aws --version"
-                sh "aws sts assume-role --role-arn arn:aws:iam:${config['aws_account_id']}:role/${config['build_role_name']} --role-session-name ${config['app_name']}-ci-build > build-credentials.json"
+                sh "aws sts assume-role --role-arn arn:aws:iam:${config['aws_account_id']}:role/${config['build_role_name']} --role-session-name ${GIT_COMMIT}-ci-build > build-credentials.json"
                 sh "cat build-credentials.json"
                 //$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
                 echo "Pushing the docker container..."
