@@ -47,7 +47,7 @@ pipeline {
                 sh "cat build-credentials.json"
                 sh "AWS_ACCESS_KEY_ID=`/home/jenkins/jq -r '.Credentials.AccessKeyId' build-credentials.json`"
                 // sh "echo $AWS_ACCESS_KEY_ID"
-                AWS_SECRET_ACCESS_KEY = sh (script: "AWS_SECRET_ACCESS_KEY=`/home/jenkins/jq -r '.Credentials.SecretAccessKey' build-credentials.json`", returnStdout: true)
+                AWS_SECRET_ACCESS_KEY = sh (script: 'AWS_SECRET_ACCESS_KEY=`/home/jenkins/jq -r \'.Credentials.SecretAccessKey\' build-credentials.json`', returnStdout: true)
                 echo $AWS_SECRET_ACCESS_KEY
                 // sh "echo $AWS_SECRET_ACCESS_KEY"
                 echo "Logging in to Amazon ECR..."
