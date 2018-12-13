@@ -44,7 +44,7 @@ pipeline {
                 echo config.toString()
                 echo "Logging in to Amazon ECR..."
                 sh "aws --version"
-                sh "curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI > task-credentials.json"
+                sh "curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI"
                 sh "curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI > task-credentials.json"
                 sh "AWS_ACCESS_KEY_ID=`/home/jenkins/jq -r '.AccessKeyId' task-credentials.json`"
                 sh "echo $AWS_ACCESS_KEY_ID"
