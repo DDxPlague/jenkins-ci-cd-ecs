@@ -44,7 +44,9 @@ pipeline {
                 echo config.toString()
                 echo "Logging in to Amazon ECR..."
                 sh "aws --version"
-                sh "curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI"
+                sh "curl 169.254.170.2$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI > task-credentials.json"
+                sh "AWS_ACCESS_KEY_ID=`./jq -r '.AccessKeyId' task-credentials.json`"
+                sh "echo $AWS_ACCESS_KEY_ID"
                 sh "aws sts assume-role --role-arn arn:aws:iam:${config['aws_account_id']}:role/${config['build_role_name']} --role-session-name ${GIT_COMMIT} > build-credentials.json"
                 sh "cat build-credentials.json"
                 //$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
