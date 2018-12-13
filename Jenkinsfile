@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo config.toString()
                 echo "Building the docker container"
-                sh "docker build --pull -t ${config['app_name']}:${app_version_number} ."
+                sh "docker build --pull -t ${config['app_name']}:${config['app_version_number']} ."
             }
         }
         // push the docker container only when building the master branch
