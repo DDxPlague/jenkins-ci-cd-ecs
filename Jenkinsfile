@@ -12,6 +12,7 @@ pipeline {
             steps {
                 script{
                     config = readYaml file: "config.yml"
+                    echo "ENVIRONMENT CONFIG:"
                     echo config.toString()
                     sh "env"
                 }
