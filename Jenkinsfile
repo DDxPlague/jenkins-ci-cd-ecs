@@ -46,7 +46,7 @@ pipeline {
                 sh "aws sts assume-role --role-arn arn:aws:iam::${config['aws_account_id']}:role/${config['build_role_name']} --role-session-name ${GIT_COMMIT} > build-credentials.json"
                 sh "cat build-credentials.json"
                 sh """
-                AWS_ACCESS_KEY_ID=`/home/jenkins/jq -r '.Credentials.AccessKeyId' build-credentials.json`"
+                AWS_ACCESS_KEY_ID=`/home/jenkins/jq -r '.Credentials.AccessKeyId' build-credentials.json`
                 """
                 // sh "echo $AWS_ACCESS_KEY_ID"
                 echo "\$AWS_SECRET_ACCESS_KEY"
