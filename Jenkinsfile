@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo config.toString()
                 echo "Building the docker container"
-                sh "docker build --pull -t ${config['app_name']}:${GIT_COMMIT} ."
+                sh "docker build --pull -t ${config['app_name']}:${app_version_number} ."
             }
         }
         // push the docker container only when building the master branch
@@ -46,7 +46,7 @@ pipeline {
                 sh "aws --version"
                 //$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
                 echo "Pushing the docker container..."
-                //sh "docker push -t ${config['app_name']}:${GIT_COMMIT} ."
+                //sh "docker push -t ${config['app_name']}:${app_version_number} ."
             }
         }
         // auto deploy to the development environment only when building the master branch
