@@ -1,4 +1,4 @@
-app_name: ddxplague/jenkins-ecs-slave-docker-builder
+app_name: 053442952948.dkr.ecr.us-east-2.amazonaws.com/test
 app_version_number: 1.0-dev
 aws_account_id: "053442952948"
 aws_region: us-east-2

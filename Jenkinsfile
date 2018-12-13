@@ -52,12 +52,10 @@ pipeline {
                 AWS_SESSION_TOKEN=`/home/jenkins/jq -r '.Credentials.SessionToken' build-credentials.json`
                 aws ecr get-login --region ${config['aws_region']} --no-include-email
                 """
-                // sh "echo $AWS_ACCESS_KEY_ID"
-                echo "\$AWS_SECRET_ACCESS_KEY"
                 echo "Logging in to Amazon ECR..."
                 //$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
                 echo "Pushing the docker container..."
-                //sh "docker push -t ${config['app_name']}:${app_version_number} ."
+                sh "docker push -t ${config['app_name']}:${app_version_number} ."
             }
         }
         // auto deploy to the development environment only when building the master branch
