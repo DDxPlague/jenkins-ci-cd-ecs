@@ -45,7 +45,7 @@ pipeline {
 
                 sh "aws sts assume-role --role-arn arn:aws:iam::${config['aws_account_id']}:role/${config['build_role_name']} --role-session-name ${GIT_COMMIT} > build-credentials.json"
                 sh "cat build-credentials.json"
-                AWS_ACCESS_KEY_ID = sh (script: "/home/jenkins/jq -r \'.Credentials.AccessKeyId\' build-credentials.json", returnStdout: true).trim()
+                AWS_ACCESS_KEY_ID = sh (script: "/home/jenkins/jq -r \'.Credentials.AccessKeyId\' build-credentials.json", returnStdout: true)
                 // sh "echo $AWS_ACCESS_KEY_ID"
                 echo "Logging in to Amazon ECR..."
                 //$(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
