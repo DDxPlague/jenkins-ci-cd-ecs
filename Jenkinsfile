@@ -50,7 +50,7 @@ pipeline {
                 export AWS_ACCESS_KEY_ID=`/home/jenkins/jq -r '.Credentials.AccessKeyId' build-credentials.json`
                 export AWS_SECRET_ACCESS_KEY=`/home/jenkins/jq -r '.Credentials.SecretAccessKey' build-credentials.json`
                 export AWS_SESSION_TOKEN=`/home/jenkins/jq -r '.Credentials.SessionToken' build-credentials.json`
-                eval $(aws ecr get-login --region ${config['aws_region']} --no-include-email)
+                eval \$(aws ecr get-login --region ${config['aws_region']} --no-include-email)
                 docker push ${config['app_name']}:${config['app_version_number']}
                 """
             }
